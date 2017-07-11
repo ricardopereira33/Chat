@@ -26,8 +26,11 @@ namespace app
         {
             foreach(KeyValuePair < IPAddress, NetworkStream > entry in clients)
             {
+                Console.WriteLine(ip); 
+                Console.WriteLine(clients.Count);
                 if (!entry.Key.Equals(ip))
                 {
+                    Console.WriteLine(ip);
                     entry.Value.Write(msg,0,msg.Length);
                 }
             }

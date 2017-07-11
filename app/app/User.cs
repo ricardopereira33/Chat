@@ -52,14 +52,16 @@ namespace app
                             ) + Environment.NewLine
                             + Environment.NewLine;
 
-                        Byte[] response = Encoding.UTF8.GetBytes(text);
+                        Byte[] response = Encoding.UTF8.GetBytes("Vai te foder!");
 
                         Console.WriteLine(text);
-                        stream.Write(response,0,response.Length);
+                        //stream.Write(response,0,response.Length);
+                        room.SendMsg(response,Ip);
                     }
                     else
                     {
                         room.SendMsg(bytes, Ip);
+                        bytes = new Byte[1024];
                     }
                 }
             }
