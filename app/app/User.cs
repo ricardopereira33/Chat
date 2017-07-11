@@ -52,7 +52,7 @@ namespace app
                             ) + Environment.NewLine
                             + Environment.NewLine;
 
-                        Byte[] response = Encoding.UTF8.GetBytes("Vai te foder!");
+                        Byte[] response = Encoding.UTF8.GetBytes(text);
 
                         Console.WriteLine(text);
                         //stream.Write(response,0,response.Length);
