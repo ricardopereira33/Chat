@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.IO;
 using System.Net.WebSockets;
 using System.Text;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -42,6 +43,9 @@ namespace ChatRoom
                 }
 
                 var response = await ReceiveStringAsync(currentSocket, ct);
+                var message = WebUtility.HtmlEncode(response);
+                var result = CommonMark.CommonMarkConverter.Convert(message);
+
                 if(string.IsNullOrEmpty(response))
                 {
                     if(currentSocket.State != WebSocketState.Open)
@@ -59,7 +63,7 @@ namespace ChatRoom
                         continue;
                     }
 
-                    await SendStringAsync(socket.Value, response, ct);
+                    await SendStringAsync(socket.Value, result, ct);
                 }
             }
 
@@ -98,7 +102,6 @@ namespace ChatRoom
                     return null;
                 }
 
-                // Encoding UTF8: https://tools.ietf.org/html/rfc6455#section-5.6
                 using (var reader = new StreamReader(ms, Encoding.UTF8))
                 {
                     return await reader.ReadToEndAsync();

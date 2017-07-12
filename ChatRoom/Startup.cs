@@ -45,15 +45,15 @@ namespace ChatRoom
 
             app.UseStaticFiles();
 
-app.UseWebSockets();
-app.UseMiddleware<ChatWebSocketMiddleware>();
+            app.UseWebSockets();
+            app.UseMiddleware<ChatWebSocketMiddleware>();
 
-app.UseMvc(routes =>
-{
-    routes.MapRoute(
-        name: "default",
-        template: "{controller=Home}/{action=Index}/{id?}");
-});
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                name: "default",
+                template: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }
