@@ -14,7 +14,6 @@ namespace SignalRChat
         protected void Application_Start(object sender, EventArgs e)
         {
             // Register the default hubs route: ~/signalr/hubs
-            RouteTable.Routes.MapHubs();
         }
 
         protected void Session_Start(object sender, EventArgs e)

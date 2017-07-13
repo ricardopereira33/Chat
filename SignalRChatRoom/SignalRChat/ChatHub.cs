@@ -65,7 +65,7 @@ namespace SignalRChat
 
         }
 
-        public override System.Threading.Tasks.Task OnDisconnected()
+        public override System.Threading.Tasks.Task OnDisconnected(bool stopCalled)
         {
             var item = ConnectedUsers.FirstOrDefault(x => x.ConnectionId == Context.ConnectionId);
             if (item != null)
@@ -77,7 +77,7 @@ namespace SignalRChat
 
             }
 
-            return base.OnDisconnected();
+            return base.OnDisconnected(stopCalled);
         }
 
      
